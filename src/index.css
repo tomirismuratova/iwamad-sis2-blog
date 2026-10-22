@@ -1,0 +1,22 @@
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #222;
+  background: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
