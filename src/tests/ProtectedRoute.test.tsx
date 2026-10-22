@@ -1,16 +1,31 @@
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter, Routes, Route } from 'react-router'
 import ProtectedRoute from '../components/ProtectedRoute'
 
-it('restricts access to protected content', () => {
+it('redirects signed-out users to Sign In', () => {
   render(
-    <ProtectedRoute>
-      <h1>Secret Content</h1>
-    </ProtectedRoute>
+    <MemoryRouter initialEntries={['/private']}>
+      <Routes>
+        <Route
+          path="/signin"
+          element={<h1>Sign In</h1>}
+        />
+
+        <Route
+          element={<ProtectedRoute isSignedIn={false} />}
+        >
+          <Route
+            path="/private"
+            element={<h1>Secret Content</h1>}
+          />
+        </Route>
+      </Routes>
+    </MemoryRouter>
   )
 
   expect(
-    screen.getByText('Protected Page')
+    screen.getByRole('heading', { name: 'Sign In' })
   ).toBeInTheDocument()
 
   expect(

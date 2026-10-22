@@ -1,27 +1,15 @@
-import { useState } from 'react'
-import type { ReactNode } from 'react'
+import { Navigate, Outlet } from 'react-router'
 
-type Props = {
-  children: ReactNode
+type ProtectedRouteProps = {
+  isSignedIn: boolean
 }
 
-export default function ProtectedRoute({ children }: Props) {
-  const [hasAccess, setHasAccess] = useState(false)
-
-  if (!hasAccess) {
-    return (
-      <main>
-        <h1>Protected Page</h1>
-        <p>You need permission to view this page.</p>
-        <button
-          type="button"
-          onClick={() => setHasAccess(true)}
-        >
-          Unlock Page
-        </button>
-      </main>
-    )
+export default function ProtectedRoute({
+  isSignedIn,
+}: ProtectedRouteProps) {
+  if (!isSignedIn) {
+    return <Navigate to="/signin" replace />
   }
 
-  return <>{children}</>
+  return <Outlet />
 }

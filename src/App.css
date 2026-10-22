@@ -350,3 +350,33 @@ a:focus-visible {
     font-size: 16px;
   }
 }
+
+.site-footer {
+  padding: 32px 24px;
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.sign-in-page,
+.private-page {
+  min-height: 65vh;
+}
+
+.sign-in-page .primary-button,
+.private-page .primary-button {
+  border: none;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+.sign-in-page .primary-button:hover,
+.private-page .primary-button:hover {
+  background: #51473f;
+}
